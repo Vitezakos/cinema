@@ -10,6 +10,8 @@ closeBtn.addEventListener("click", function () {
   sidebar.classList.remove("show-sidebar");
 });
 
+//Comment for Git
+
 const card = [
   {
     id: 1,
