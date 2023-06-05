@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Cinema project</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+    />
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+  </head>
+  <body>
+    <section>
+      <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+          <!-- Sidebar Titles -->
+          <div class="categories">
+            <h3>Caregories</h3>
+          </div>
+          <div class="filters">
+            <h3>Filters</h3>
+          </div>
+          <!-- Sidebar Buttons -->
+
+          <div class="button-container">
+            <button class="close">X</button>
+            <div class="btn btn-categories">
+              <button class="movie">Movie</button>
+              <button class="series">Series</button>
+              <button class="animation">Animation</button>
+            </div>
+            <div class="btn btn-filters">
+              <button class="watchlist">Watchlist</button>
+              <button class="top-picks">Top-picks</button>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Search bar -->
+        <header class="search-header">
+          <div class="search-bar">
+            <input
+              type="text"
+              class="input-field"
+              placeholder="search for a show name..."
+            />
+          </div>
+          <!-- Filter Button -->
+          <div class="filter-btn">
+            <button class="btn btn-filter">Filters</button>
+          </div>
+        </header>
+        <div class="movie-cards"></div>
+      </div>
+    </section>
+    <!-- Javascript -->
+    <script src="app.js"></script>
+  </body>
+</html>
