@@ -21,9 +21,9 @@
           <div class="categories">
             <h3>Categories</h3>
             <div class="btn btn-categories">
-              <button class="movie">Movie</button>
-              <button class="series">Series</button>
-              <button class="animation">Animation</button>
+              <button class="side-btn movie" data-id="movie">Movie</button>
+              <button class="side-btn series" data-id="series">Series</button>
+              <button class="side-btn animation" data-id="animation">Animation</button>
             </div>
           </div>
           <div class="filters">
@@ -43,6 +43,7 @@
               type="text"
               class="input-field"
               placeholder="search for a show name..."
+              onkeyup="searchBar()"
             />
           </div>
           <!-- Filter Button -->
