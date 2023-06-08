@@ -198,7 +198,7 @@ input {
   height: 580px;
   min-width: 395px;
   max-width: 395px;
-  border: 1px solid red;
+  border: 1px solid black;
   border-radius: 50px;
   overflow: hidden;
 }
@@ -247,9 +247,18 @@ input {
   display: none;
 }
 
-.yeppers {
-  border-color: white;
+.movie-cards .card.hide-card {
+  display: none;
 }
+
+/* .card:hover .details {
+  display: block;
+  background-color: black;
+  width: 395px;
+  height: 580px;
+  top: 0%;
+  left: 0%;
+} */
 
 /* Responsive styling */
 

@@ -1,4 +1,4 @@
-const cardList = [
+let cardList = [
   {
     id: 1,
     img: "./punisher.jpg",
@@ -7,6 +7,7 @@ const cardList = [
     desc: "TV Series 2017-2019",
     category: "series",
     top: false,
+    isFavourite: false,
   },
   {
     id: 2,
@@ -16,6 +17,7 @@ const cardList = [
     desc: "TV Series 2019-Ongoing",
     category: "series",
     top: true,
+    isFavourite: false,
   },
   {
     id: 3,
@@ -25,6 +27,7 @@ const cardList = [
     desc: "Movie 2019",
     category: "movie",
     top: true,
+    isFavourite: false,
   },
   {
     id: 4,
@@ -34,6 +37,7 @@ const cardList = [
     desc: "Movie 1994",
     category: "movie",
     top: true,
+    isFavourite: false,
   },
   {
     id: 5,
@@ -43,6 +47,7 @@ const cardList = [
     desc: "Animated TV Series 2008-2020",
     category: "animation",
     top: false,
+    isFavourite: false,
   },
   {
     id: 6,
@@ -52,6 +57,7 @@ const cardList = [
     desc: "Movie 2007",
     category: "movie",
     top: false,
+    isFavourite: false,
   },
   {
     id: 7,
@@ -61,6 +67,7 @@ const cardList = [
     desc: "Animated TV Series 2009-Ongoing",
     category: "animation",
     top: true,
+    isFavourite: false,
   },
   {
     id: 8,
@@ -70,6 +77,7 @@ const cardList = [
     desc: "TV Series 2001-2018",
     category: "series",
     top: true,
+    isFavourite: false,
   },
   {
     id: 9,
@@ -79,6 +87,7 @@ const cardList = [
     desc: "Animated TV Series 2014-2020",
     category: "animation",
     top: false,
+    isFavourite: false,
   },
 ];
 
@@ -88,11 +97,35 @@ window.addEventListener("DOMContentLoaded", function () {
   displayCardItems(cardList);
   filterCardButtons(cardList);
   topPicks(cardList);
+  // watchList(cardList);
+  toFavourite();
+  itemToLocalStorage(cardList);
 });
+
+function itemToLocalStorage() {
+  console.log(localStorage);
+  localStorage.setItem("items", JSON.stringify(cardList));
+}
+
+function toFavourite() {
+  let btns = document.querySelectorAll(".watchlist");
+  btns.forEach((btn) => {
+    btn.addEventListener("click", fav);
+  });
+}
+
+function fav() {
+  const cardId = parseInt(this.parentElement.parentElement.id);
+  cardList.forEach((card) => {
+    if (card.id === cardId) {
+      card.isFavourite = true;
+    }
+  });
+}
 
 function displayCardItems(cardItems) {
   let displayCards = cardItems.map(function (item) {
-    return `<div class="card">
+    return `<div class="card" id=${item.id}>
     <img src="${item.img}" alt="movie picture" class="picture" />
     <div class="card-info">
       <header class="card-header">
@@ -110,7 +143,7 @@ function displayCardItems(cardItems) {
           Marine veteran Frank Castle finds a new meaning in life as a
           vigilante known as "The Punisher".
         </p>
-        <button class="watchlist">
+        <button class="hidden-btn">
           <i class="fas fa-plus"></i>
           Watchlist
         </button>
@@ -158,7 +191,7 @@ function topPicks() {
   sideBtns.forEach(function (btn) {
     btn.addEventListener("click", function () {
       const cardTop = cardList.filter(function (cardItem) {
-        if (cardItem.top === true) {
+        if (cardItem.top == true) {
           return cardItem;
         }
       });
@@ -169,7 +202,6 @@ function topPicks() {
 
 function searchBar() {
   let input = document.getElementsByClassName("input-field")[0].value;
-  console.log(input);
   const cardTitle = cardList.filter(function (cardItem) {
     if (cardItem.title.toLowerCase().includes(input)) {
       return cardItem;
@@ -178,7 +210,12 @@ function searchBar() {
   displayCardItems(cardTitle);
 }
 
-// const watchBtn = querySelector(".watchlist");
-// watchBtn.addEventListener("click", function () {
-//   card.classList.add("yeppers");
-// });
+function watchList() {
+  cardList.filter(function (item) {
+    if (item.isFavourite == false) {
+      let cardElement = document.getElementById(item.id);
+      cardElement.classList.add("hide-card");
+      console.log(cardElement);
+    }
+  });
+}
