@@ -97,14 +97,53 @@ window.addEventListener("DOMContentLoaded", function () {
   displayCardItems(cardList);
   filterCardButtons(cardList);
   topPicks(cardList);
-  // watchList(cardList);
   toFavourite();
   itemToLocalStorage(cardList);
+  hiddenToFavourite();
 });
 
 function itemToLocalStorage() {
-  console.log(localStorage);
   localStorage.setItem("items", JSON.stringify(cardList));
+}
+
+function hiddenToFavourite() {
+  let btns = document.querySelectorAll(".hidden-btn");
+  btns.forEach((btn) => {
+    btn.addEventListener("click", hiddenFav);
+  });
+}
+
+function hiddenFav() {
+  const cardId = parseInt(this.parentElement.parentElement.parentElement.id);
+  const cardElement = this.parentElement.parentElement;
+  let myNewStoreAsString = localStorage.getItem("items");
+  let newArray = JSON.parse(myNewStoreAsString);
+  newArray.forEach((card) => {
+    if (card.id === cardId) {
+      if (card.isFavourite === false) {
+        card.isFavourite = true;
+        cardElement.querySelector(
+          ".watchlist"
+        ).innerHTML = `<i class="fas fa-minus"></i>
+      Unfavour`;
+        cardElement.querySelector(
+          ".hidden-btn"
+        ).innerHTML = `<i class="fas fa-minus"></i>
+      Unfavour`;
+      } else {
+        card.isFavourite = false;
+        cardElement.querySelector(
+          ".hidden-btn"
+        ).innerHTML = `<i class="fas fa-plus"></i>
+        Watchlist`;
+        cardElement.querySelector(
+          ".watchlist"
+        ).innerHTML = `<i class="fas fa-plus"></i>
+        Watchlist`;
+      }
+    }
+  });
+  localStorage.setItem("items", JSON.stringify(newArray));
 }
 
 function toFavourite() {
@@ -116,11 +155,27 @@ function toFavourite() {
 
 function fav() {
   const cardId = parseInt(this.parentElement.parentElement.id);
-  cardList.forEach((card) => {
+  const cardElement = this.parentElement.parentElement;
+  let myNewStoreAsString = localStorage.getItem("items");
+  let newArray = JSON.parse(myNewStoreAsString);
+  newArray.forEach((card) => {
     if (card.id === cardId) {
-      card.isFavourite = true;
+      if (card.isFavourite === false) {
+        card.isFavourite = true;
+        cardElement.querySelector(
+          ".watchlist"
+        ).innerHTML = `<i class="fas fa-minus"></i>
+      Unfavour`;
+      } else {
+        card.isFavourite = false;
+        cardElement.querySelector(
+          ".watchlist"
+        ).innerHTML = `<i class="fas fa-plus"></i>
+        Watchlist`;
+      }
     }
   });
+  localStorage.setItem("items", JSON.stringify(newArray));
 }
 
 function displayCardItems(cardItems) {
@@ -160,13 +215,21 @@ function displayCardItems(cardItems) {
 const filterBtn = document.querySelector(".filter-btn");
 const sidebar = document.querySelector(".sidebar");
 const closeBtn = document.querySelector(".close");
+const cardContainer = document.querySelector(".movie-cards");
+const searchfield = document.querySelector(".top-search");
 
 filterBtn.addEventListener("click", function () {
   sidebar.classList.add("show-sidebar");
+  filterBtn.classList.add("hide-btn");
+  cardContainer.classList.add("sidebar-open");
+  searchfield.classList.add("sidebar-open");
 });
 
 closeBtn.addEventListener("click", function () {
   sidebar.classList.remove("show-sidebar");
+  filterBtn.classList.remove("hide-btn");
+  cardContainer.classList.remove("sidebar-open");
+  searchfield.classList.remove("sidebar-open");
 });
 
 // Sidebar filter buttons
@@ -176,7 +239,9 @@ function filterCardButtons() {
   sideBtns.forEach(function (btn) {
     btn.addEventListener("click", function (event) {
       const category = event.currentTarget.dataset.id;
-      const cardCategory = cardList.filter(function (cardItem) {
+      let myNewStoreAsString = localStorage.getItem("items");
+      let newArray = JSON.parse(myNewStoreAsString);
+      const cardCategory = newArray.filter(function (cardItem) {
         if (cardItem.category === category) {
           return cardItem;
         }
@@ -190,8 +255,10 @@ function topPicks() {
   const sideBtns = document.querySelectorAll(".top-picks");
   sideBtns.forEach(function (btn) {
     btn.addEventListener("click", function () {
-      const cardTop = cardList.filter(function (cardItem) {
-        if (cardItem.top == true) {
+      let myNewStoreAsString = localStorage.getItem("items");
+      let newArray = JSON.parse(myNewStoreAsString);
+      const cardTop = newArray.filter(function (cardItem) {
+        if (cardItem.top === true) {
           return cardItem;
         }
       });
@@ -202,7 +269,9 @@ function topPicks() {
 
 function searchBar() {
   let input = document.getElementsByClassName("input-field")[0].value;
-  const cardTitle = cardList.filter(function (cardItem) {
+  let myNewStoreAsString = localStorage.getItem("items");
+  let newArray = JSON.parse(myNewStoreAsString);
+  const cardTitle = newArray.filter(function (cardItem) {
     if (cardItem.title.toLowerCase().includes(input)) {
       return cardItem;
     }
@@ -211,11 +280,12 @@ function searchBar() {
 }
 
 function watchList() {
-  cardList.filter(function (item) {
-    if (item.isFavourite == false) {
+  let myNewStoreAsString = localStorage.getItem("items");
+  let newArray = JSON.parse(myNewStoreAsString);
+  newArray.filter(function (item) {
+    if (item.isFavourite === false) {
       let cardElement = document.getElementById(item.id);
       cardElement.classList.add("hide-card");
-      console.log(cardElement);
     }
   });
 }

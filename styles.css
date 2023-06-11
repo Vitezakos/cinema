@@ -45,6 +45,7 @@ section {
   border-right: solid black;
   border-width: 5px;
   color: #fff;
+  z-index: 99;
 }
 
 .sidebar .categories {
@@ -132,12 +133,27 @@ section {
   transform: translate(0);
 }
 
+.hide-btn {
+  visibility: hidden;
+}
+
 /* Filter component */
+.top-search {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
 header {
   display: flex;
   justify-content: space-between;
   width: 70%;
   height: auto;
+}
+
+header.search-header {
+  margin-bottom: 3rem;
+  margin-top: 7rem;
 }
 
 header .search-bar {
@@ -147,9 +163,13 @@ header .search-bar {
   height: 0;
 }
 
+.top-search.sidebar-open {
+  margin-left: 305px;
+  justify-content: flex-start;
+}
+
 header .filter-btn {
   order: 1;
-  margin-bottom: 3rem;
   width: 15%;
 }
 
@@ -189,6 +209,12 @@ input {
   flex-wrap: wrap;
   height: 100%;
   gap: 3rem;
+  justify-content: center;
+  /*margin-left: 305px;*/
+}
+
+.movie-cards.sidebar-open {
+  margin-left: 305px;
 }
 
 .movie-cards .card {
@@ -201,6 +227,7 @@ input {
   border: 1px solid black;
   border-radius: 50px;
   overflow: hidden;
+  position: relative;
 }
 
 .movie-cards .card img {
@@ -234,6 +261,12 @@ input {
   flex-direction: column;
   align-items: center;
 }
+.movie-cards .card .card-info .details p {
+  margin: 3rem;
+  font-size: x-large;
+  font-weight: bold;
+  text-align: center;
+}
 
 .watchlist {
   color: #fff;
@@ -251,19 +284,46 @@ input {
   display: none;
 }
 
-/* .card:hover .details {
-  display: block;
+.unfavour {
+  color: #fff;
+  background-color: black;
+  border-width: 0;
+  padding: 0;
+  width: 6em;
+}
+
+.card:hover .details {
+  display: flex;
   background-color: black;
   width: 395px;
   height: 580px;
-  top: 0%;
-  left: 0%;
-} */
+  top: 0;
+  left: 0;
+  position: absolute;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.hidden-btn {
+  color: #fff;
+  background-color: #270b63;
+  border-width: 0;
+  padding: 0;
+  width: 9rem;
+  height: 3rem;
+  border-radius: 11px;
+}
 
 /* Responsive styling */
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 850px) {
   .movie-cards {
     flex-direction: column;
+  }
+  header {
+    width: 100%;
+  }
+  .movie-cards {
+    align-items: center;
   }
 }

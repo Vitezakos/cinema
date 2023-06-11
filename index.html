@@ -23,34 +23,39 @@
             <div class="btn btn-categories">
               <button class="side-btn movie" data-id="movie">Movie</button>
               <button class="side-btn series" data-id="series">Series</button>
-              <button class="side-btn animation" data-id="animation">Animation</button>
+              <button class="side-btn animation" data-id="animation">
+                Animation
+              </button>
             </div>
           </div>
           <div class="filters">
             <h3>Filters</h3>
             <div class="btn btn-filters">
-              <button class="sidebar-watchlist" onclick="watchList()">Watchlist</button>
+              <button class="sidebar-watchlist" onclick="watchList()">
+                Watchlist
+              </button>
               <button class="top-picks">Top-picks</button>
             </div>
           </div>
         </aside>
-      </div>
 
         <!-- Search bar -->
-        <header class="search-header">
-          <div class="search-bar">
-            <input
-              type="text"
-              class="input-field"
-              placeholder="search for a show name..."
-              onkeyup="searchBar()"
-            />
-          </div>
-          <!-- Filter Button -->
-          <div class="filter-btn">
-            <button class="btn-filter">Filters</button>
-          </div>
-        </header>
+        <div class="top-search">
+          <header class="search-header">
+            <div class="search-bar">
+              <input
+                type="text"
+                class="input-field"
+                placeholder="search for a show name..."
+                onkeyup="searchBar()"
+              />
+            </div>
+            <!-- Filter Button -->
+            <div class="filter-btn">
+              <button class="btn-filter">Filters</button>
+            </div>
+          </header>
+        </div>
         <div class="movie-cards"></div>
       </div>
     </section>
