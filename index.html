@@ -13,51 +13,51 @@
   </head>
   <body>
     <section>
-      <div class="container">
-        <!-- Sidebar -->
-        <aside class="sidebar">
-          <!-- Sidebar Titles -->
-          <button class="close">X</button>
-          <div class="categories">
-            <h3>Categories</h3>
-            <div class="btn btn-categories">
-              <button class="side-btn movie" data-id="movie">Movie</button>
-              <button class="side-btn series" data-id="series">Series</button>
-              <button class="side-btn animation" data-id="animation">
-                Animation
-              </button>
-            </div>
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <!-- Sidebar Titles -->
+        <button class="close">X</button>
+        <div class="categories">
+          <h3>Categories</h3>
+          <div class="btn btn-categories">
+            <button class="shadow-buttons side-btn movie" data-id="movie">Movie</button>
+            <button class="shadow-buttons side-btn series" data-id="series">
+              Series
+            </button>
+            <button class="shadow-buttons side-btn animation" data-id="animation">
+              Animation
+            </button>
           </div>
-          <div class="filters">
-            <h3>Filters</h3>
-            <div class="btn btn-filters">
-              <button class="sidebar-watchlist" onclick="watchList()">
-                Watchlist
-              </button>
-              <button class="top-picks">Top-picks</button>
-            </div>
-          </div>
-        </aside>
-
-        <!-- Search bar -->
-        <div class="top-search">
-          <header class="search-header">
-            <div class="search-bar">
-              <input
-                type="text"
-                class="input-field"
-                placeholder="search for a show name..."
-                onkeyup="searchBar()"
-              />
-            </div>
-            <!-- Filter Button -->
-            <div class="filter-btn">
-              <button class="btn-filter">Filters</button>
-            </div>
-          </header>
         </div>
-        <div class="movie-cards"></div>
+        <div class="filters">
+          <h3>Filters</h3>
+          <div class="btn btn-filters">
+            <button class="shadow-buttons sidebar-watchlist" onclick="watchList()">
+              Watchlist
+            </button>
+            <button class="shadow-buttons top-picks">Top-picks</button>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Search bar -->
+      <div class="top-search">
+        <header class="search-header">
+          <div class="search-bar">
+            <input
+              type="text"
+              class="shadow-filter input-field"
+              placeholder="search for a show name..."
+              onkeyup="searchBar()"
+            />
+          </div>
+          <!-- Filter Button -->
+          <div class="filter-btn">
+            <button class="shadow-filter btn-filter">Filters</button>
+          </div>
+        </header>
       </div>
+      <div class="movie-cards"></div>
     </section>
     <!-- Javascript -->
     <script src="app.js"></script>

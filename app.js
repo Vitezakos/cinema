@@ -1,3 +1,5 @@
+//Item list
+
 let cardList = [
   {
     id: 1,
@@ -91,7 +93,7 @@ let cardList = [
   },
 ];
 
-const movieCards = document.querySelector(".movie-cards");
+//Functions after the page loaded
 
 window.addEventListener("DOMContentLoaded", function () {
   displayCardItems(cardList);
@@ -101,6 +103,42 @@ window.addEventListener("DOMContentLoaded", function () {
   itemToLocalStorage(cardList);
   hiddenToFavourite();
 });
+
+//Items injected into the html
+
+const movieCards = document.querySelector(".movie-cards");
+
+function displayCardItems(cardItems) {
+  let displayCards = cardItems.map(function (item) {
+    return `<div class="card" id=${item.id}>
+    <img src="${item.img}" alt="movie picture" class="picture" />
+    <div class="card-info">
+      <header class="card-header">
+        <h3>${item.score}</h3>
+        <h3>${item.title}</h3>
+      </header>
+      <p>${item.desc}</p>
+      <button class="btn watchlist">
+        <i class="fas fa-plus"></i>
+        Watchlist
+      </button>
+      <div class="details">
+        <p class="desc">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint cupiditate fugit porro possimus sed explicabo similique in, officia vel ex.
+        </p>
+        <button class="hidden-btn">
+          <i class="fas fa-plus"></i>
+          Watchlist
+        </button>
+      </div>
+    </div>
+  </div>`;
+  });
+  displayCards = displayCards.join("");
+  movieCards.innerHTML = displayCards;
+}
+
+// + Watchlist/- Unfavor button and local storage
 
 function itemToLocalStorage() {
   localStorage.setItem("items", JSON.stringify(cardList));
@@ -178,38 +216,6 @@ function fav() {
   localStorage.setItem("items", JSON.stringify(newArray));
 }
 
-function displayCardItems(cardItems) {
-  let displayCards = cardItems.map(function (item) {
-    return `<div class="card" id=${item.id}>
-    <img src="${item.img}" alt="movie picture" class="picture" />
-    <div class="card-info">
-      <header class="card-header">
-        <h3>${item.score}</h3>
-        <h3>${item.title}</h3>
-      </header>
-      <p>${item.desc}</p>
-      <button class="btn watchlist">
-        <i class="fas fa-plus"></i>
-        Watchlist
-      </button>
-      <div class="details">
-        <p class="desc">
-          After his revenge on those who murdered his family, aimless
-          Marine veteran Frank Castle finds a new meaning in life as a
-          vigilante known as "The Punisher".
-        </p>
-        <button class="hidden-btn">
-          <i class="fas fa-plus"></i>
-          Watchlist
-        </button>
-      </div>
-    </div>
-  </div>`;
-  });
-  displayCards = displayCards.join("");
-  movieCards.innerHTML = displayCards;
-}
-
 // Opens filter sidebar
 
 const filterBtn = document.querySelector(".filter-btn");
@@ -251,6 +257,8 @@ function filterCardButtons() {
   });
 }
 
+// Sidebar top picks button
+
 function topPicks() {
   const sideBtns = document.querySelectorAll(".top-picks");
   sideBtns.forEach(function (btn) {
@@ -267,6 +275,8 @@ function topPicks() {
   });
 }
 
+//Input field search bar
+
 function searchBar() {
   let input = document.getElementsByClassName("input-field")[0].value;
   let myNewStoreAsString = localStorage.getItem("items");
@@ -278,6 +288,8 @@ function searchBar() {
   });
   displayCardItems(cardTitle);
 }
+
+//Watchlist sidebar button
 
 function watchList() {
   let myNewStoreAsString = localStorage.getItem("items");

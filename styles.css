@@ -90,6 +90,8 @@ section {
   border-radius: 10px;
   width: 7rem;
   height: 3rem;
+  font-size: large;
+  font-weight: bold;
 }
 .sidebar .series {
   background-color: #7351d6;
@@ -98,6 +100,8 @@ section {
   border-radius: 10px;
   width: 7rem;
   height: 3rem;
+  font-size: large;
+  font-weight: bold;
 }
 .sidebar .animation {
   background-color: #7351d6;
@@ -106,6 +110,8 @@ section {
   border-radius: 10px;
   width: 10rem;
   height: 3rem;
+  font-size: large;
+  font-weight: bold;
 }
 .sidebar .sidebar-watchlist {
   background-color: #7351d6;
@@ -114,6 +120,8 @@ section {
   border-radius: 10px;
   width: 10rem;
   height: 3rem;
+  font-size: large;
+  font-weight: bold;
 }
 .sidebar .top-picks {
   background-color: #7351d6;
@@ -122,11 +130,16 @@ section {
   border-radius: 10px;
   width: 10rem;
   height: 3rem;
+  font-size: large;
+  font-weight: bold;
 }
 
 .sidebar h3 {
   display: flex;
   justify-content: center;
+  font-size: large;
+  font-family: sans-serif;
+  font-weight: bold;
 }
 
 .show-sidebar {
@@ -135,6 +148,10 @@ section {
 
 .hide-btn {
   visibility: hidden;
+}
+
+.shadow-buttons {
+  box-shadow: 0px 5px 5px #1d084b;
 }
 
 /* Filter component */
@@ -176,6 +193,8 @@ header .filter-btn {
 header .filter-btn button {
   height: 40px;
   width: 6rem;
+  font-size: large;
+  font-weight: bold;
 }
 
 .input-field {
@@ -200,6 +219,10 @@ input {
   background-color: #7351d6;
   border: solid black;
   border-radius: 12px;
+}
+
+.shadow-filter {
+  box-shadow: 0px 5px 5px #441184;
 }
 
 /* Card component */
@@ -242,7 +265,6 @@ input {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
   background-color: black;
   color: white;
 }
@@ -251,6 +273,9 @@ input {
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-size: large;
+  font-weight: bold;
+  font-family: sans-serif;
 }
 
 .movie-cards .card .card-info header h3 {
@@ -260,12 +285,16 @@ input {
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-size: 20px;
+  margin-bottom: 13px;
+  margin-top: 5px;
 }
 .movie-cards .card .card-info .details p {
   margin: 3rem;
   font-size: x-large;
   font-weight: bold;
   text-align: center;
+  font-family: sans-serif;
 }
 
 .watchlist {
@@ -274,6 +303,8 @@ input {
   border-width: 0;
   padding: 0;
   width: 6em;
+  font-size: large;
+  font-family: sans-serif;
 }
 
 .details {
@@ -312,6 +343,8 @@ input {
   width: 9rem;
   height: 3rem;
   border-radius: 11px;
+  font-size: large;
+  font-family: sans-serif;
 }
 
 /* Responsive styling */
