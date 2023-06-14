@@ -327,12 +327,12 @@ function searchBar() {
 function watchList() {
   let myNewStoreAsString = localStorage.getItem("items");
   let newArray = JSON.parse(myNewStoreAsString);
-  newArray.filter(function (item) {
-    if (item.isFavourite === false) {
-      let cardElement = document.getElementById(item.id);
-      cardElement.classList.add("hide-card");
+  const cardAll = newArray.filter(function (item) {
+    if (item.isFavourite === true) {
+      return item;
     }
   });
+  displayCardItems(cardAll);
 }
 
 //Clear-filters button
