@@ -22,10 +22,6 @@ section {
   background-size: cover;
 }
 
-/* .container {
-  margin: 8rem;
-} */
-
 /* Sidebar component */
 
 .sidebar {
@@ -55,6 +51,10 @@ section {
 
 .sidebar .filters {
   order: 2;
+  margin-top: 2rem;
+}
+.sidebar .clear-filters {
+  order: 3;
   margin-top: 2rem;
 }
 
@@ -124,6 +124,16 @@ section {
   font-weight: bold;
 }
 .sidebar .top-picks {
+  background-color: #7351d6;
+  color: #fff;
+  border: solid black;
+  border-radius: 10px;
+  width: 10rem;
+  height: 3rem;
+  font-size: large;
+  font-weight: bold;
+}
+.sidebar .btn-clear {
   background-color: #7351d6;
   color: #fff;
   border: solid black;
@@ -233,7 +243,6 @@ input {
   height: 100%;
   gap: 3rem;
   justify-content: center;
-  /*margin-left: 305px;*/
 }
 
 .movie-cards.sidebar-open {
@@ -351,12 +360,31 @@ input {
 
 @media only screen and (max-width: 850px) {
   .movie-cards {
-    flex-direction: column;
+    flex-direction: row;
   }
   header {
     width: 100%;
   }
   .movie-cards {
     align-items: center;
+  }
+  .movie-cards.sidebar-open {
+    margin-left: 0px;
+  }
+  .top-search.sidebar-open {
+    margin-left: 0px;
+  }
+
+  .top-search header {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: space-around;
+  }
+  header .filter-btn button {
+    margin-bottom: 20px;
+  }
+  header .search-bar {
+    width: 80%;
   }
 }

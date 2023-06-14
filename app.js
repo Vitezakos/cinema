@@ -3,93 +3,111 @@
 let cardList = [
   {
     id: 1,
-    img: "./punisher.jpg",
+    img: "./pictures/punisher.jpg",
     score: 8.5,
     title: "The Punisher",
     desc: "TV Series 2017-2019",
     category: "series",
     top: false,
     isFavourite: false,
+    shortSum:
+      'After his revenge on those who murdered his family, aimless Marine veteran Frank Castle finds a new meaning in life as a vigilante known as "The Punisher".',
   },
   {
     id: 2,
-    img: "./theboys.jpg",
+    img: "./pictures/theboys.jpg",
     score: 8.7,
     title: "The Boys",
     desc: "TV Series 2019-Ongoing",
     category: "series",
     top: true,
     isFavourite: false,
+    shortSum:
+      "A group of vigilantes set out to take down corrupt superheroes who abuse their superpowers.",
   },
   {
     id: 3,
-    img: "./thegentlemen.jpg",
+    img: "./pictures/thegentlemen.jpg",
     score: 7.8,
     title: "The Gentlemen",
     desc: "Movie 2019",
     category: "movie",
     top: true,
     isFavourite: false,
+    shortSum:
+      "An American expat tries to sell off his highly profitable marijuana empire in London, triggering plots, schemes, bribery and blackmail in an attempt to steal his domain out from under him.",
   },
   {
     id: 4,
-    img: "./clerks.jpg",
+    img: "./pictures/clerks.jpg",
     score: 7.7,
     title: "Clerks",
     desc: "Movie 1994",
     category: "movie",
     top: true,
     isFavourite: false,
+    shortSum:
+      "A day in the lives of two convenience clerks named Dante and Randal as they annoy customers, discuss movies, and play hockey on the store roof.",
   },
   {
     id: 5,
-    img: "./clonewars.jpg",
+    img: "./pictures/clonewars.jpg",
     score: 8.4,
     title: "The Clone Wars",
     desc: "Animated TV Series 2008-2020",
     category: "animation",
     top: false,
     isFavourite: false,
+    shortSum:
+      "Jedi Knights lead the Grand Army of the Republic against the droid army of the Separatists.",
   },
   {
     id: 6,
-    img: "./superbad.jpg",
+    img: "./pictures/superbad.jpg",
     score: 7.7,
     title: "Superbad",
     desc: "Movie 2007",
     category: "movie",
     top: false,
     isFavourite: false,
+    shortSum:
+      "Two co-dependent high school seniors are forced to deal with separation anxiety after their plan to stage a booze-soaked party goes awry.",
   },
   {
     id: 7,
-    img: "./archer.jpg",
+    img: "./pictures/archer.jpg",
     score: 8.6,
     title: "Archer",
     desc: "Animated TV Series 2009-Ongoing",
     category: "animation",
     top: true,
     isFavourite: false,
+    shortSum:
+      "Covert black ops and espionage take a back seat to zany personalities and relationships between secret agents and drones.",
   },
   {
     id: 8,
-    img: "./tpb.jpg",
+    img: "./pictures/tpb.jpg",
     score: 8.6,
     title: "Trailer Park Boys",
     desc: "TV Series 2001-2018",
     category: "series",
     top: true,
     isFavourite: false,
+    shortSum:
+      "Three petty felons have a documentary made about their life in a trailer park.",
   },
   {
     id: 9,
-    img: "./bojack.jpg",
+    img: "./pictures/bojack.jpg",
     score: 8.8,
     title: "BoJack Horseman",
     desc: "Animated TV Series 2014-2020",
     category: "animation",
     top: false,
     isFavourite: false,
+    shortSum:
+      "BoJack Horseman was the star of the hit television show, Horsin' Around, in the '80s and '90s, but now he's washed up, living in Hollywood, complaining about everything, and wearing colorful sweaters.",
   },
 ];
 
@@ -97,11 +115,10 @@ let cardList = [
 
 window.addEventListener("DOMContentLoaded", function () {
   displayCardItems(cardList);
+  itemToLocalStorage(cardList);
   filterCardButtons(cardList);
   topPicks(cardList);
-  toFavourite();
-  itemToLocalStorage(cardList);
-  hiddenToFavourite();
+  clearFilters(cardList);
 });
 
 //Items injected into the html
@@ -118,31 +135,47 @@ function displayCardItems(cardItems) {
         <h3>${item.title}</h3>
       </header>
       <p>${item.desc}</p>
-      <button class="btn watchlist">
-        <i class="fas fa-plus"></i>
-        Watchlist
-      </button>
-      <div class="details">
-        <p class="desc">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint cupiditate fugit porro possimus sed explicabo similique in, officia vel ex.
-        </p>
-        <button class="hidden-btn">
+      ${
+        item.isFavourite
+          ? `<button class="btn watchlist">
+    <i class="fas fa-minus"></i>
+    Unfavour </button>`
+          : `<button class="btn watchlist">
           <i class="fas fa-plus"></i>
           Watchlist
-        </button>
+        </button>`
+      }
+      <div class="details">
+        <p class="desc">
+        ${item.shortSum}
+        </p>
+        ${
+          item.isFavourite
+            ? `<button class="hidden-btn">
+      <i class="fas fa-minus"></i>
+      Unfavour </button>`
+            : `<button class="hidden-btn">
+            <i class="fas fa-plus"></i>
+            Watchlist
+          </button>`
+        }
       </div>
     </div>
   </div>`;
   });
   displayCards = displayCards.join("");
   movieCards.innerHTML = displayCards;
+  hiddenToFavourite();
+  toFavourite();
 }
 
-// + Watchlist/- Unfavor button and local storage
+//Adds the array to the local storage
 
 function itemToLocalStorage() {
   localStorage.setItem("items", JSON.stringify(cardList));
 }
+
+// + Watchlist/- Unfavor button
 
 function hiddenToFavourite() {
   let btns = document.querySelectorAll(".hidden-btn");
@@ -299,5 +332,19 @@ function watchList() {
       let cardElement = document.getElementById(item.id);
       cardElement.classList.add("hide-card");
     }
+  });
+}
+
+//Clear-filters button
+
+function clearFilters() {
+  const btn = document.querySelector(".btn-clear");
+  btn.addEventListener("click", function () {
+    let myNewStoreAsString = localStorage.getItem("items");
+    let newArray = JSON.parse(myNewStoreAsString);
+    const cardAll = newArray.filter(function (cardItem) {
+      return cardItem;
+    });
+    displayCardItems(cardAll);
   });
 }
